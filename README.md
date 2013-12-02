@@ -1,4 +1,4 @@
-#`vclock`#
+#`vector-clock-class`#
 
 ## Overview ##
 
@@ -6,9 +6,17 @@ A [vector clock][vclock-paper] is a data structure for keeping
 track of logical time for a set of events, allowing them to be partially
 ordered.
 
+Install it with
+
+```
+npm install --save vector-clock-class
+```
+
 ## API ##
 
 ```javascript
+var Clock = require('vector-clock-class')
+
 Clock(
     String | Number id,
     (Integer start) | null
