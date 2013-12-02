@@ -42,11 +42,16 @@ found.
 
 Bump the entry for a given id. `version` is required to ensure updates from
 *this* `vector_clock` which occur after the bump have a later version number.
-Note that the `version` is optional **only** if `id === vector_clock.id`.
+Note that the `version` is optional **only** if `id === vector_clock.id`. The
+return value is `false` if `version` is not specified when it should be.
+Otherwise it is the new version number for `id`.
 
 ###`vector_clock.createReadStream()` -> `stream`###
 
-This method creates a stream; randomly orders the keys of the clock; pushes onto a newly-created readableStream one object of form  `{id: key, version: n}` per key; and then closes the stream. This facilitates easily creating digests of all the updates the clock has seen, useful for the [scuttlebutt][]
+This method creates a stream; randomly orders the keys of the clock; pushes
+onto a newly-created readableStream one object of form  `{id: key, version: n}`
+per key; and then closes the stream. This facilitates easily creating digests
+of all the updates the clock has seen, useful for the [scuttlebutt][]
 
 # The competition #
 
