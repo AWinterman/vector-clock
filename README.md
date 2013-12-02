@@ -1,8 +1,8 @@
-#`vector-clock`#
+#`vclock`#
 
 ## Overview ##
 
-A [vector clock][vector-clock-paper] is describes a data structure for keeping
+A [vector clock][vclock-paper] is a data structure for keeping
 track of logical time for a set of events, allowing them to be partially
 ordered.
 
@@ -28,10 +28,10 @@ unique identifier of another clock.
 ###`vector_clock.clock`###
 
 The vector clock-- a map from `source_ids` to version numbers. Like the `C`
-function from [Lamport's paper][vector-clock-paper]. It's worth noting that
-this means `vector-clock` plays well with the unfortunately named
-[npm.im/vectorclock][vectorclock], although this breaks the contract somewhat,
-since [mixu](https://github.com/mixu)'s library expects object literals.
+function from [Lamport's paper][vclock-paper]. It's worth noting that this
+means `vclock` plays well with [npm.im/vectorclock][vectorclock], although this
+breaks the contract somewhat, since [mixu](https://github.com/mixu)'s library
+expects object literals.
 
 ###`vector_clock.get(id)` -> `Integer version`###
 
@@ -55,6 +55,6 @@ there. This one more or less grew out of my [scuttlebutt][] implementation. It
 differs from [vectorclock][] in it's scope (slightly smaller), that it presents
 a way to stream clock data out of it, and it's API.
 
-[vector-clock-paper]: http://research.microsoft.com/en-us/um/people/lamport/pubs/time-clocks.pdf
+[vclock-paper]: http://research.microsoft.com/en-us/um/people/lamport/pubs/time-clocks.pdf
 [vectorclock]: https://npmjs.org/package/vectorclock
 [scuttlebutt]: https://github.com/AWinterman/simple-scuttle
