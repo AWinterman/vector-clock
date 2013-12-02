@@ -1,18 +1,22 @@
 #`vector-clock`#
 
-A [vector clock][vector-clocks-paper].
+## Overview ##
 
+A [vector clock][vector-clock-paper] is describes a data structure for keeping
+track of logical time for a set of events, allowing them to be partially
+ordered.
 
 ## API ##
 
 ```javascript
 Clock(
-    String | Number UniqueIdentifier,
+    String | Number id,
     (Integer start) | null
 ) -> vector_clock
 ```
 
-- `UniqueIdentifier` should distinguish this clock from all the others.
+- `id` should distinguish this clock from all the others. It is
+saved to the class instance as `id`
 - `start` is an optional parameter which sets the version number from which the
 clock should start counting.
 
@@ -24,23 +28,25 @@ unique identifier of another clock.
 ###`vector_clock.clock`###
 
 The vector clock-- a map from `source_ids` to version numbers. Like the `C`
-function from [Lamport's paper][vector-clocks-paper]. It's worth noting that
+function from [Lamport's paper][vector-clock-paper]. It's worth noting that
 this means `vector-clock` plays well with the unfortunately named
 [npm.im/vectorclock][vectorclock], although this breaks the contract somewhat,
 since [mixu](https://github.com/mixu)'s library expects object literals.
 
-##`vector_clock.get(id)` -> `Integer version'##
+###`vector_clock.get(id)` -> `Integer version`###
 
 Returns the version number for the specified `id`, or `-Infinity` if it cannot be
 found.
 
-###`vector_clock.bump(id)`###
+###`vector_clock.update(id, version)` -> `Integer|false`###
 
-Bump the entry for a given id.
+Bump the entry for a given id. `version` is required to ensure updates from
+*this* `vector_clock` which occur after the bump have a later version number.
+Note that the `version` is optional **only** if `id === vector_clock.id`.
 
 ###`vector_clock.createReadStream()` -> `stream`###
 
-Creates a stream, randomly orders the keys of the clock, pushes objects onto fresh read stream in form `{id: key, version: n}`, and then closes the stream. This facilitates easily creating digests of all the updates the clock has seen.
+This method creates a stream; randomly orders the keys of the clock; pushes onto a newly-created readableStream one object of form  `{id: key, version: n}` per key; and then closes the stream. This facilitates easily creating digests of all the updates the clock has seen, useful for the [scuttlebutt][]
 
 # The competition #
 

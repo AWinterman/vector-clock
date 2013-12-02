@@ -4,20 +4,21 @@ var Clock = require('./index')
 test('test setter method', function(assert) {
   var d = new Clock('B')
 
-  d.bump('A')
-  d.bump('A')
+  d.update('A', 5)
+  d.update('A', 10)
 
   assert.strictEqual(
       d.get('B')
-    , 2
-    , 'Local id gets bumped every time (0 indexed)'
+    , 11
+    , 'Local id gets updateed every time (0 indexed)'
   )
 
-  d.bump('B')
-  d.bump('A')
+  d.update('B')
+  d.update('A', 11)
 
+  assert.equal(d.update('A'), false)
   assert.strictEqual(2, d.get('A'))
-  assert.strictEqual(4, d.get('B'))
+  assert.strictEqual(12, d.get('B'))
   assert.end()
 })
 

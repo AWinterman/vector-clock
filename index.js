@@ -62,12 +62,19 @@ Clock.prototype.get = function(source_id) {
   return -Infinity
 }
 
-Clock.prototype.bump = function(id) {
+Clock.prototype.update = function(id, version) {
   if(!this.clock.hasOwnProperty(id) && (id in this.clock)) {
     throw new Error('Cannot override prototypal properties')
   }
-  // if it's there, bump it. Otherwise add it. Then make sure this clocks
-  // version number is still bigger.
+
+  if(id !== this.id && version === undefined) {
+    console.warn(
+        'No action is taken if the id is not this.id and ' +
+        'version is not specified'
+    )
+
+    return false
+  }
 
   if(id in this.clock) {
     this.clock[id]++
@@ -75,8 +82,8 @@ Clock.prototype.bump = function(id) {
     this.clock[id] = this.start
   }
 
-  if(this.clock[this.id] <= this.clock[id]) {
-    this.clock[this.id] = this.clock[id] + 1
+  if(this.clock[this.id] <= version) {
+    this.clock[this.id] = version + 1
   }
 
   return this.clock[id]

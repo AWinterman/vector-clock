@@ -16,5 +16,16 @@
   "license": "MIT",
   "devDependencies": {
     "tape": "~2.3.0"
-  }
+  },
+  "dependencies": {
+    "tape": "~2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AWinterman/vector-clock.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AWinterman/vector-clock/issues"
+  },
+  "homepage": "https://github.com/AWinterman/vector-clock"
 }
