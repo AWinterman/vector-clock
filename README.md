@@ -37,7 +37,7 @@ unique identifier of another clock.
 
 The vector clock-- a map from `source_ids` to version numbers. Like the `C`
 function from [Lamport's paper][vclock-paper]. It's worth noting that this
-means `vclock` plays well with [npm.im/vectorclock][vectorclock], although this
+means this module plays well with [npm.im/vectorclock][vectorclock], although this
 breaks the contract somewhat, since [mixu](https://github.com/mixu)'s library
 expects object literals.
 
