@@ -67,23 +67,17 @@ Clock.prototype.update = function(id, version) {
     throw new Error('Cannot override prototypal properties')
   }
 
-  if(id !== this.id && version === undefined) {
-    console.warn(
-        'No action is taken if the id is not this.id and ' +
-        'version is not specified'
-    )
+  var current = id in this.clock ? this.clock[id] : this.start
 
+  if(id !== this.version && (undefined === version || null === version)) {
     return false
   }
 
-  if(id in this.clock) {
-    this.clock[id]++
+  if(id === this.id) {
+    this.clock[this.id]++
   } else {
-    this.clock[id] = this.start
-  }
-
-  if(this.clock[this.id] <= version) {
-    this.clock[this.id] = version + 1
+    this.clock[id] = Math.max(current, version)
+    this.clock[this.id] = Math.max(version + 1, this.clock[this.id])
   }
 
   return this.clock[id]
