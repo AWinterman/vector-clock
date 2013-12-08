@@ -69,7 +69,7 @@ Clock.prototype.update = function(id, version) {
 
   var current = id in this.clock ? this.clock[id] : this.start
 
-  if(id !== this.version && (undefined === version || null === version)) {
+  if(id !== this.id && (undefined === version || null === version)) {
     return false
   }
 

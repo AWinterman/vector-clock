@@ -5,14 +5,7 @@ test('test setter method', function(assert) {
   var d = new Clock('B')
 
   d.update('A', 5)
-
-  console.log(d.clock)
-
   d.update('A', 10)
-
-  console.log(d.clock)
-  console.log(d.get('B'))
-
 
   assert.strictEqual(
       d.get('B')
