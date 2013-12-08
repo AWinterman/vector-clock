@@ -1,6 +1,6 @@
 {
   "name": "vector-clock-class",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "make yourself some VectorClock instances",
   "main": "index.js",
   "scripts": {
