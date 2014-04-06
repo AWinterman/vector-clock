@@ -58,8 +58,9 @@ Otherwise it is the new version number for `id`.
 
 This method creates a stream; randomly orders the keys of the clock; pushes
 onto a newly-created readableStream one object of form  `{id: key, version: n}`
-per key; and then closes the stream. This facilitates easily creating digests
-of all the updates the clock has seen, useful for the [scuttlebutt][]
+per key; and then closes the stream. It also
+`vector_clock.update(vector_clock.id)`. This facilitates easily creating
+digests of all the updates the clock has seen, useful for the [scuttlebutt][]
 
 # The competition #
 

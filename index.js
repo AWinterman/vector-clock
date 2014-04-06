@@ -47,6 +47,8 @@ Clock.prototype.createReadStream = function() {
     ++i
   }
 
+  self.update(self.id)
+
   return out_stream
 }
 

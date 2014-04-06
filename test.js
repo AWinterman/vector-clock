@@ -13,7 +13,7 @@ test('test setter method', function(assert) {
     , 'Local id gets updateed every time (0 indexed)'
   )
 
-  d.update('B')
+  assert.equal(d.update('B'), 12)
   d.update('A', 11)
 
   assert.equal(d.update('A'), false)
